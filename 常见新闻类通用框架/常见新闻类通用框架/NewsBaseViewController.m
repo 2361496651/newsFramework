@@ -77,7 +77,7 @@
         btnX = i * btnW;
         titleButton.frame = CGRectMake(btnX, 0, btnW, btnH);
         [titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        titleButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        titleButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
         
         
         // 监听按钮点击
@@ -130,7 +130,8 @@
     [self setupTitleCenter:button];
     
     // 字体缩放:形变
-    button.transform = CGAffineTransformMakeScale(1.25, 1.25);
+//    button.transform = CGAffineTransformMakeScale(1.2, 1.2);
+
     
     _selectButton = button;
 }
@@ -172,8 +173,9 @@
 {
     UIScrollView *titleScrollView = [[UIScrollView alloc] init];
     titleScrollView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    CGFloat y = self.navigationController.navigationBarHidden? 20 : 64;
-    titleScrollView.frame = CGRectMake(0, y, self.view.bounds.size.width, 32);
+    CGFloat statusBarH = CGRectGetMaxY([UIApplication sharedApplication].statusBarFrame);
+    CGFloat y = self.navigationController.navigationBarHidden? statusBarH : statusBarH + 44;
+    titleScrollView.frame = CGRectMake(0, y, self.view.bounds.size.width, 44.0);
     [self.view addSubview:titleScrollView];
     _titleScrollView = titleScrollView;
     
@@ -222,6 +224,8 @@
 // 只要一滚动就需要字体渐变
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    return;
+    
     // 字体缩放 1.缩放比例 2.缩放哪两个按钮
     NSInteger leftI = scrollView.contentOffset.x / ScreenW;
     NSInteger rightI = leftI + 1;
