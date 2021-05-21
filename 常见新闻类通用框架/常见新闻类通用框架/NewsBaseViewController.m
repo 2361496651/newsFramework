@@ -115,7 +115,7 @@
     [self setupOneViewController:i];
     
     // 3.内容滚动视图滚动到对应的位置
-    CGFloat x = i * [UIScreen mainScreen].bounds.size.width;
+    CGFloat x = i * self.contentScrollView.bounds.size.width;
     self.contentScrollView.contentOffset = CGPointMake(x, 0);
 }
 
@@ -130,7 +130,7 @@
     [self setupTitleCenter:button];
     
     // 字体缩放:形变
-    button.transform = CGAffineTransformMakeScale(1.2, 1.2);
+    button.transform = CGAffineTransformMakeScale(1.25, 1.25);
     
     _selectButton = button;
 }
@@ -163,7 +163,7 @@
         return;
     }
     CGFloat x = i * [UIScreen mainScreen].bounds.size.width;
-    vc.view.frame = CGRectMake(x, 0, ScreenW  , self.contentScrollView.bounds.size.height);
+    vc.view.frame = CGRectMake(x, 0, self.contentScrollView.bounds.size.width  , self.contentScrollView.bounds.size.height);
     [self.contentScrollView addSubview:vc.view];
 }
 
